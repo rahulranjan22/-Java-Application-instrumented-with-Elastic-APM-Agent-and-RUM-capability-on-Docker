@@ -29,7 +29,7 @@ CMD ["java", \
     "-Delastic.apm.service_name=rranjan-java-app", \
     "-Delastic.apm.server_urls=<Add your APM URL here>", \
     "-Delastic.apm.secret_token=<Add your APM secret code here", \
-    "-Delastic.apm.environment=dev", \
+    "-Delastic.apm.environment=demo", \
     "-Delastic.apm.application_packages=com.example", \
     "-Delastic.apm.log_ecs_reformatting=OVERRIDE", \
     "-Delastic.apm.log_sending=true", \
