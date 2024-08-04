@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  rranjan-java-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    ports:
+      - "8001:8001"
+    environment:
+      - ELASTIC_APM_SERVICE_NAME=rranjan-java-app
+      - ELASTIC_APM_SERVER_URL=https://7ff4bfea559c4802b73117ee01eb9faf.apm.us-central1.gcp.cloud.es.io
+      - ELASTIC_APM_SECRET_TOKEN=alXpwbzIyltkUC1m6M
+      - ELASTIC_APM_ENVIRONMENT=dev
+    networks:
+      - javaapplication_app-network
+
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    ports:
+      - "8080:8080"
+    networks:
+      - javaapplication_app-network
+
+networks:
+  javaapplication_app-network:
+    driver: bridge

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elastic APM RUM Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #6078f3, #dbb344);
+            color: #612121;
+            text-align: center;
+            padding: 50px;
+        }
+
+        h1 {
+            color: #4f641c;
+        }
+
+        .button {
+            background-color: #450e20;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #21e3ac;
+        }
+
+        .error {
+            color: #ff1744;
+        }
+
+        .success {
+            color: #00e676;
+        }
+
+        footer {
+            margin-top: 50px;
+            color: #11b0ea;
+        }
+
+        a {
+            color: #f4f1f2;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #e03568;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@elastic/apm-rum@5.9.0/dist/bundles/elastic-apm-rum.umd.min.js"></script>
+    <script>
+        var apm = elasticApm.init({
+            serviceName: 'rranjan-java-app',
+            serverUrl: 'https://7ff4bfea559c4802b73117ee01eb9faf.apm.us-central1.gcp.cloud.es.io',
+            secretToken: 'alXpwbzIyltkUC1m6M',
+            environment: 'production'
+        });
+
+        function simulateApiCall(apiEndpoint) {
+            var transaction = apm.startTransaction(apiEndpoint, 'request');
+            fetch('/api/simulate?endpoint=' + encodeURIComponent(apiEndpoint))
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    transaction.end();
+                    document.getElementById('result').innerText = 'Success: ' + JSON.stringify(data);
+                    document.getElementById('result').className = 'success';
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    transaction.captureError(error);
+                    transaction.end();
+                    document.getElementById('result').innerText = 'Error: ' + error;
+                    document.getElementById('result').className = 'error';
+                });
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Elastic APM RUM Demo with Sample Java Application</h1>
+    <button class="button" onclick="simulateApiCall('GET /api/users')">Simulate GET /api/users</button>
+    <button class="button" onclick="simulateApiCall('POST /api/orders')">Simulate POST /api/orders</button>
+    <button class="button" onclick="simulateApiCall('PUT /api/products/123')">Simulate PUT /api/products/123</button>
+    <button class="button" onclick="simulateApiCall('DELETE /api/items/456')">Simulate DELETE /api/items/456</button>
+    <button class="button" onclick="simulateApiCall('GET /api/error')">Simulate GET /api/error</button>
+    <div id="result"></div>
+    <footer>
+        <p><a href="https://www.linkedin.com/in/rahul-ranjan-b86b7315/"
+                target="_blank">© 2024 Rahul Ranjan</a></p>
+    </footer>
+</body>
+
+</html>
