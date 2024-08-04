@@ -9,8 +9,8 @@ services:
       - "8001:8001"
     environment:
       - ELASTIC_APM_SERVICE_NAME=rranjan-java-app
-      - ELASTIC_APM_SERVER_URL=https://7ff4bfea559c4802b73117ee01eb9faf.apm.us-central1.gcp.cloud.es.io
-      - ELASTIC_APM_SECRET_TOKEN=alXpwbzIyltkUC1m6M
+      - ELASTIC_APM_SERVER_URL=<Add url APM URL Here>
+      - ELASTIC_APM_SECRET_TOKEN=<ADD your APM secret Code Here>
       - ELASTIC_APM_ENVIRONMENT=dev
     networks:
       - javaapplication_app-network
