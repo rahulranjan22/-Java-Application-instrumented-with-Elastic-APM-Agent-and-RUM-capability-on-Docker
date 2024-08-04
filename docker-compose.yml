@@ -11,7 +11,7 @@ services:
       - ELASTIC_APM_SERVICE_NAME=rranjan-java-app
       - ELASTIC_APM_SERVER_URL=<Add url APM URL Here>
       - ELASTIC_APM_SECRET_TOKEN=<ADD your APM secret Code Here>
-      - ELASTIC_APM_ENVIRONMENT=dev
+      - ELASTIC_APM_ENVIRONMENT=demo
     networks:
       - javaapplication_app-network
 
