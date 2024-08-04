@@ -27,8 +27,8 @@ EXPOSE 8001
 CMD ["java", \
     "-javaagent:/usr/src/myapp/elastic-apm-agent.jar", \
     "-Delastic.apm.service_name=rranjan-java-app", \
-    "-Delastic.apm.server_urls=https://7ff4bfea559c4802b73117ee01eb9faf.apm.us-central1.gcp.cloud.es.io:443", \
-    "-Delastic.apm.secret_token=alXpwbzIyltkUC1m6M", \
+    "-Delastic.apm.server_urls=<Add your APM URL here>", \
+    "-Delastic.apm.secret_token=<Add your APM secret code here", \
     "-Delastic.apm.environment=dev", \
     "-Delastic.apm.application_packages=com.example", \
     "-Delastic.apm.log_ecs_reformatting=OVERRIDE", \
