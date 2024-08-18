@@ -4,5 +4,4 @@
 Step-by-step setup details are available at the below link.
 
 
-
-https://www.linkedin.com/pulse/elastic-rum-real-user-monitoring-open-telemetry-otel-rahul-ranjan-zl0fc/
+https://www.linkedin.com/pulse/java-application-instrumented-elastic-apm-agent-rum-docker-ranjan-ikenc/
